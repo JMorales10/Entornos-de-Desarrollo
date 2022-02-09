@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTextArea;
 
 public class Ventana1 extends JFrame {
 
@@ -25,6 +26,7 @@ public class Ventana1 extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JComboBox comboBoxPais;
+	private JTextArea textArea;
 
 	/**
 	 * Launch the application.
@@ -47,7 +49,7 @@ public class Ventana1 extends JFrame {
 	 */
 	public Ventana1() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1014, 586);
+		setBounds(100, 100, 1137, 883);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -101,7 +103,11 @@ public class Ventana1 extends JFrame {
 				System.out.println("Código tecleado en Nombre: "+textField_1.getText());
 				System.out.println("Código tecleado en Dpto: "+textField_2.getText());
 				System.out.println("Posición: "+comboBoxPais.getSelectedIndex());
-				System.out.println("Contenido: "+comboBoxPais.getSelectedItem()); 
+				System.out.println("Contenido: "+comboBoxPais.getSelectedItem());
+				textArea.setText(""); //limpio
+				textArea.setText("Primera línea."); //asigno contenido al textarea.
+				textArea.append("\nSegunda línea");
+				textArea.append("\nTercera línea"); 
 				
 				
 			}
@@ -137,5 +143,9 @@ public class Ventana1 extends JFrame {
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_4.setBounds(256, 314, 207, 27);
 		contentPane.add(lblNewLabel_4);
+		
+		textArea = new JTextArea();
+		textArea.setBounds(257, 580, 530, 219);
+		contentPane.add(textArea);
 	}
 }
