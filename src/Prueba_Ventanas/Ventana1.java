@@ -6,27 +6,42 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+/*import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;*/
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
-import javax.swing.DropMode;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
+import javax.swing.JCheckBox;
 
 public class Ventana1 extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField textCodigoDepartamento;
+	private JTextField textNombreDepartamento;
+	private JTextField textLocalidadDepartamento;
+	private JButton btnNewButton;
 	private JComboBox comboBoxPais;
 	private JTextArea textArea;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JRadioButton rdbtnPersonal;
+	private JRadioButton rdbtnAdministracion;
+	private JRadioButton rdbtnInformatica;
+	private JRadioButton rdbtnContabilidad;
+	private JCheckBox chckbxCheckBoxInforme;
 
 	/**
 	 * Launch the application.
@@ -49,7 +64,7 @@ public class Ventana1 extends JFrame {
 	 */
 	public Ventana1() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1137, 883);
+		setBounds(100, 100, 1236, 892);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -57,95 +72,175 @@ public class Ventana1 extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("DATOS DE DEPARTAMENTOS");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblNewLabel.setForeground(Color.BLUE);
-		lblNewLabel.setBackground(new Color(240, 240, 240));
-		lblNewLabel.setBounds(261, 39, 443, 43);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblNewLabel.setBackground(Color.WHITE);
+		lblNewLabel.setBounds(321, 95, 361, 27);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Codigo Departamento");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(224, 92, 246, 99);
+		JLabel lblNewLabel_1 = new JLabel("Código Departamento");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_1.setForeground(Color.DARK_GRAY);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_1.setBounds(213, 191, 210, 27);
 		contentPane.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.setHorizontalAlignment(SwingConstants.LEFT);
-		textField.setBounds(480, 131, 183, 27);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
 		JLabel lblNewLabel_2 = new JLabel("Nombre Departamento");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_2.setBounds(256, 187, 272, 43);
+		lblNewLabel_2.setForeground(Color.DARK_GRAY);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_2.setBounds(213, 272, 210, 24);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Localidad Departamento");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_3.setBounds(256, 258, 269, 27);
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_3.setForeground(Color.DARK_GRAY);
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_3.setBounds(213, 355, 230, 19);
 		contentPane.add(lblNewLabel_3);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(480, 198, 286, 28);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		textCodigoDepartamento = new JTextField();
+		textCodigoDepartamento.setHorizontalAlignment(SwingConstants.CENTER);
+		textCodigoDepartamento.setBounds(477, 195, 154, 27);
+		contentPane.add(textCodigoDepartamento);
+		textCodigoDepartamento.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(480, 261, 286, 27);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		textNombreDepartamento = new JTextField();
+		textNombreDepartamento.setBounds(477, 272, 322, 27);
+		contentPane.add(textNombreDepartamento);
+		textNombreDepartamento.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Insertar Datos");
+		textLocalidadDepartamento = new JTextField();
+		textLocalidadDepartamento.setBounds(477, 355, 322, 27);
+		contentPane.add(textLocalidadDepartamento);
+		textLocalidadDepartamento.setColumns(10);
+		
+		btnNewButton = new JButton("Insertar Datos");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("SE HA PULSADO EL BOTÓN INSERTAR DATOS");
-				System.out.println("Código tecleado en Código: "+textField.getText());
-				System.out.println("Código tecleado en Nombre: "+textField_1.getText());
-				System.out.println("Código tecleado en Dpto: "+textField_2.getText());
-				System.out.println("Posición: "+comboBoxPais.getSelectedIndex());
-				System.out.println("Contenido: "+comboBoxPais.getSelectedItem());
-				textArea.setText(""); //limpio
-				textArea.setText("Primera línea."); //asigno contenido al textarea.
+				System.out.println("Código tecleado en Código: " + textCodigoDepartamento.getText());
+				System.out.println("Código tecleado en Nombre: " + textNombreDepartamento.getText());
+				System.out.println("Código tecleado en Localidad: " + textLocalidadDepartamento.getText());
+				System.out.println("SE HA PULSADO EL BOTÓN INSERTAR DATOS. ");
+				System.out.println("Posición: " + comboBoxPais.getSelectedIndex());
+				System.out.println("Contenido: " + comboBoxPais.getSelectedItem());
+				textArea.setText("");
+				textArea.setText("Primera línea.");//asigno contenido al textarea
 				textArea.append("\nSegunda línea");
-				textArea.append("\nTercera línea"); 
+				textArea.append("\nTercera línea");
+				ButtonModel personal=rdbtnPersonal.getModel();
+				ButtonModel admin= rdbtnAdministracion.getModel();
+				ButtonModel inform= rdbtnInformatica.getModel();
+				ButtonModel contab= rdbtnContabilidad.getModel();
+				if(buttonGroup.getSelection()!=null)
+				{
+					if (buttonGroup.getSelection().equals(personal))
+						System.out.println("Has pulsado Personal. ");
+					if (buttonGroup.getSelection().equals(admin))
+						System.out.println("Has pulsado Administración. ");
+					if (buttonGroup.getSelection().equals(inform))
+						System.out.println("Has pulsado Informática. ");
+					if (buttonGroup.getSelection().equals(contab))
+						System.out.println("Has pulsado Contabilidad. ");
+				}
 				
-				
+				if (chckbxCheckBoxInforme.isSelected())
+				{
+				System.out.println("Check pulsado. " + chckbxCheckBoxInforme.getText());
+				}
 			}
 		});
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnNewButton.setBackground(Color.BLUE);
 		btnNewButton.setForeground(Color.WHITE);
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton.setBounds(256, 455, 217, 36);
+		btnNewButton.setBounds(247, 473, 196, 39);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Limpiar Datos");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnNewButton_1.setBackground(Color.BLUE);
+		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("SE HA PULSADO EL BOTÓN LIMPIAR DATOS");
-				textField.setText("");
-				textField_1.setText("");
-				textField_2.setText("");
+				textCodigoDepartamento.setText("");
+				textNombreDepartamento.setText("");
+				textLocalidadDepartamento.setText("");
+				System.out.println("SE HA PULSADO EL BOTÓN LIMPIAR DATOS. ");
 			}
 		});
-		btnNewButton_1.setForeground(Color.WHITE);
-		btnNewButton_1.setBackground(Color.BLUE);
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton_1.setBounds(559, 455, 207, 36);
+		btnNewButton_1.setBounds(477, 473, 196, 39);
 		contentPane.add(btnNewButton_1);
 		
 		comboBoxPais = new JComboBox();
-		comboBoxPais.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		comboBoxPais.setModel(new DefaultComboBoxModel(new String[] {"Espa\u00F1a", "Francia", "Portugal", "Italia"}));
-		comboBoxPais.setBounds(480, 314, 196, 27);
+		comboBoxPais.setFont(new Font("Tahoma", Font.BOLD, 17));
+		comboBoxPais.setBackground(Color.LIGHT_GRAY);
+		comboBoxPais.setModel(new DefaultComboBoxModel(new String[] {"España", "Francia", "Portugal", "Italia"}));
+		comboBoxPais.setBounds(477, 405, 154, 32);
 		contentPane.add(comboBoxPais);
 		
-		JLabel lblNewLabel_4 = new JLabel("Seleccione el pa\u00EDs: ");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_4.setBounds(256, 314, 207, 27);
+		JLabel lblNewLabel_4 = new JLabel("Seleccione el país: ");
+		lblNewLabel_4.setForeground(Color.DARK_GRAY);
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_4.setBounds(213, 410, 210, 19);
 		contentPane.add(lblNewLabel_4);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(167, 674, 737, 161);
+		contentPane.add(scrollPane);
+		
 		textArea = new JTextArea();
-		textArea.setBounds(257, 580, 530, 219);
-		contentPane.add(textArea);
+		scrollPane.setViewportView(textArea);
+		
+		rdbtnPersonal = new JRadioButton("Personal");
+		buttonGroup.add(rdbtnPersonal);
+		rdbtnPersonal.setBounds(902, 80, 103, 21);
+		contentPane.add(rdbtnPersonal);
+		
+		rdbtnAdministracion = new JRadioButton("Administracion");
+		buttonGroup.add(rdbtnAdministracion);
+		rdbtnAdministracion.setBounds(902, 116, 103, 21);
+		contentPane.add(rdbtnAdministracion);
+		
+		rdbtnContabilidad = new JRadioButton("Contabilidad");
+		buttonGroup.add(rdbtnContabilidad);
+		rdbtnContabilidad.setBounds(902, 181, 103, 21);
+		contentPane.add(rdbtnContabilidad);
+		
+		rdbtnInformatica = new JRadioButton("Informatica");
+		buttonGroup.add(rdbtnInformatica);
+		rdbtnInformatica.setBounds(902, 147, 103, 21);
+		contentPane.add(rdbtnInformatica);
+		
+		JLabel lblNewLabel_5 = new JLabel("Tipo de Departamento:");
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel_5.setBounds(885, 46, 132, 13);
+		contentPane.add(lblNewLabel_5);
+		
+		chckbxCheckBoxInforme = new JCheckBox("Informe");
+		chckbxCheckBoxInforme.setBounds(885, 237, 93, 21);
+		contentPane.add(chckbxCheckBoxInforme);
+		
+		JButton btnNewButton_2 = new JButton("Insertar Oficina");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					Dialogo1 dialog = new Dialogo1();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			
+		});
+		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnNewButton_2.setForeground(Color.WHITE);
+		btnNewButton_2.setBackground(Color.BLUE);
+		btnNewButton_2.setBounds(338, 555, 293, 39);
+		contentPane.add(btnNewButton_2);
+
+
+		
+		
 	}
 }
